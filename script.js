@@ -65,7 +65,7 @@ function atualizarCarrinho() {
     // Atualiza link do WhatsApp
     const whatsappBtn = document.getElementById('finalizar-pedido');
     const mensagem = `Olá! Quero encomendar:\n${carrinho.map(item => `- ${item.nome} (R$ ${item.preco.toFixed(2)})`).join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`;
-    whatsappBtn.href = `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
+    whatsappBtn.href = `https://wa.me/5571993070776?text=${encodeURIComponent(mensagem)}`;
 }
 
 // Inicializa a página
@@ -73,6 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos();
     
     // Personaliza com o nome da cliente
-    const nomeCliente = "Ana"; // Substitua pelo nome real
+    const nomeCliente = "Michele"; // Substitua pelo nome real
     document.getElementById('nome-cliente').textContent = nomeCliente;
 });
