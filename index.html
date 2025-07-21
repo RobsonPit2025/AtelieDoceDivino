@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doces da [Nome] | Confeitaria Caseira</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Doces da <span id="nome-cliente">[Nome]</span></h1>
+        <p>Feito com carinho e qualidade <i class="fas fa-heart"></i></p>
+    </header>
+
+    <section class="catalogo">
+        <h2>Nossos Produtos</h2>
+        <div class="produtos-container" id="produtos">
+            <!-- Produtos serão inseridos via JS -->
+        </div>
+    </section>
+
+    <section class="carrinho">
+        <h2>Seu Pedido <i class="fas fa-shopping-cart"></i></h2>
+        <div id="itens-carrinho"></div>
+        <p>Total: <span id="total">R$ 0,00</span></p>
+        <a href="#" class="botao" id="finalizar-pedido">Finalizar via WhatsApp</a>
+    </section>
+
+    <footer>
+        <p>💬 Fale conosco: <a href="https://wa.me/5571993070776" class="link-whatsapp">WhatsApp</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
