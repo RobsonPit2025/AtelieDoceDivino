@@ -5,23 +5,29 @@ const produtos = [
         nome: "Bolo de Chocolate",
         preco: 50.00,
         imagem: "imagens/bolo-chocolate.jpg",
-        descricao: "Bolo fofinho com cobertura de ganache"
+        descricao: "Bolo fofinho com cobertura de ganache",
+        categoria: "bolos"
     },
     {
         id: 2,
         nome: "Brigadeiro Gourmet",
         preco: 2.50,
         imagem: "imagens/brigadeiro.jpg",
-        descricao: "Brigadeiro premium com chocolate 70%"
+        descricao: "Brigadeiro premium com chocolate 70%",
+        categoria: "bolos"
     }
 ];
 
 let carrinho = [];
 
 // Renderiza os produtos na página
-function renderizarProdutos() {
+function renderizarProdutos(categoriaSelecionada = 'todos') {
     const container = document.getElementById('produtos');
-    container.innerHTML = produtos.map(produto => `
+    const produtosFiltrados = categoriaSelecionada === 'todos'
+        ? produtos
+        : produtos.filter(produto => produto.categoria === categoriaSelecionada);
+
+    container.innerHTML = produtosFiltrados.map(produto => `
         <div class="produto" data-id="${produto.id}">
             <img src="${produto.imagem}" alt="${produto.nome}">
             <div class="produto-info">
@@ -33,7 +39,6 @@ function renderizarProdutos() {
         </div>
     `).join('');
 
-    // Adiciona eventos aos botões
     document.querySelectorAll('.adicionar-carrinho').forEach(botao => {
         botao.addEventListener('click', adicionarAoCarrinho);
     });
@@ -68,6 +73,10 @@ function atualizarCarrinho() {
     whatsappBtn.href = `https://wa.me/5571993070776?text=${encodeURIComponent(mensagem)}`;
 }
 
+function filtrarCategoria(categoria) {
+    renderizarProdutos(categoria);
+}
+
 // Inicializa a página
 document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos();
@@ -75,4 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Personaliza com o nome da cliente
     const nomeCliente = "Michele"; // Substitua pelo nome real
     document.getElementById('nome-cliente').textContent = nomeCliente;
+});
+
+// Slider automático da página principal
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelector(".slides");
+    if (slides) {
+        let pos = 0;
+        setInterval(() => {
+            pos -= 1;
+            slides.style.transform = `translateX(${pos}px)`;
+            // Reseta quando chega no fim (ajuste conforme largura total do conteúdo)
+            if (Math.abs(pos) > slides.scrollWidth / 2) {
+                pos = 0;
+            }
+        }, 30); // Velocidade de rolagem (menor = mais rápido)
+    }
 });
