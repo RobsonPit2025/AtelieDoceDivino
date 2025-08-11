@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brigadeiro - Ateliê Doce Divino</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header>
+    <h1>Brigadeiro</h1>
+</header>
+
+<nav class="menu-categorias" style="margin-top:10px;">
+    <a class="botao" href="../index.html">← Voltar ao início</a>
+    <a class="botao" href="bolo-chantininho.html">Bolo em Chantininho</a>
+    <a class="botao" href="bolo-vulcao.html">Bolo Vulcão</a>
+    <a class="botao" href="doces-finos.html">Doces Finos</a>
+</nav>
+
+<main>
+    <section id="galeria-brigadeiro" class="galeria-produtos"></section>
+</main>
+
+<footer>
+    <div class="footer-info">
+        <div>
+            <h4>Contato</h4>
+            <p>📞 (71) 99999-9999</p>
+            <p>📍 Salvador - BA</p>
+        </div>
+        <div>
+            <h4>Informações</h4>
+            <p>Aceitamos cartão de crédito</p>
+            <p>Parcelamos suas compras</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/galeria.js"></script>
+<script>
+    const basePath = "../imagens/brigadeiro";
+    const fotos = [
+        "brigadeiro1.jpg",
+        "brigadeiro2.jpg",
+        "brigadeiro3.jpg",
+        "brigadeiro4.jpg",
+        "brigadeiro5.jpg"
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initGaleria({
+            containerId: "galeria-brigadeiro",
+            basePath,
+            arquivos: fotos,
+            titulos: [],
+            tituloPadrao: "Brigadeiro"
+        });
+    });
+</script>
+
+</body>
+</html>

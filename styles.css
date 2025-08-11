@@ -9,12 +9,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fff9f9;
-    background-blend-mode: lighten;
     color: var(--cor-texto);
-    background-image: url('imagens/fundo-cunha2.jpeg');
-    background-repeat: repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 header {
@@ -94,6 +89,7 @@ header::after {
     padding: 20px;
 }
 
+.menu-categorias a,
 .menu-categorias button {
     background: var(--cor-secundaria);
     border: none;
@@ -103,10 +99,16 @@ header::after {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.menu-categorias button:hover {
+.menu-categorias a:hover,
+.menu-categorias a:focus-visible,
+.menu-categorias button:hover,
+.menu-categorias button:focus-visible {
     background: var(--cor-primaria);
+    outline: none;
 }
 
 #carrinho {
@@ -114,9 +116,9 @@ header::after {
     border-top: 2px solid var(--cor-primaria);
     padding: 20px;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    bottom: 0;
+    position: relative;
     z-index: 1000;
+    margin-bottom: 60px;
 }
 .portfolio-slider {
     padding: 40px 20px;
@@ -221,4 +223,125 @@ footer {
     flex-wrap: wrap;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+/* =====================
+   Responsividade
+   ===================== */
+
+/* Tablets e telas médias */
+@media (max-width: 768px) {
+  header { padding: 20px 16px; }
+  header h1 { font-size: 1.6rem; }
+  header::after { font-size: 22px; }
+
+  .menu-categorias { gap: 8px; padding: 12px; }
+  .menu-categorias a, .menu-categorias button { padding: 8px 12px; font-size: 0.95rem; }
+
+  .produtos-container { grid-template-columns: 1fr 1fr; gap: 14px; padding: 14px; }
+  .produto img { height: 160px; }
+
+  .portfolio-slider { padding: 20px 10px; }
+  .portfolio-slider h2 { font-size: 1.6rem; }
+  .slides img { max-width: 85vw; height: 180px; }
+
+  /* Evita grudar no footer em telas pequenas */
+  #carrinho { position: static; margin: 16px 10px 80px; box-shadow: 0 -1px 6px rgba(0,0,0,0.08); }
+
+  .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .footer-section { width: 100%; min-width: 0; }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  header h1 { font-size: 1.35rem; }
+  header::after { font-size: 18px; }
+
+  .produtos-container { grid-template-columns: 1fr; }
+  .produto img { height: 150px; }
+
+  .botao { width: 100%; text-align: center; padding: 12px 14px; }
+
+  .portfolio-slider h2 { font-size: 1.35rem; }
+  .slides { animation-duration: 30s; }
+  .slides img { height: 160px; }
+
+  .menu-categorias a, .menu-categorias button { font-size: 0.9rem; }
+}
+
+/* ===== Galeria de Categorias ===== */
+.galeria, .galeria-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+/* Tamanho padronizado das imagens nas páginas de categoria */
+.galeria img,
+.galeria__item img,
+.galeria-produtos img,
+.card-produto img {
+  width: 100%;
+  height: 140px;       /* deixa menor */
+  object-fit: cover;   /* corta sem deformar */
+  border-radius: 10px;
+  display: block;
+}
+
+/* Ajustes finos por breakpoint */
+@media (min-width: 768px) {
+  .galeria, .galeria-produtos { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .galeria img, .galeria__item img, .galeria-produtos img, .card-produto img { height: 150px; }
+}
+
+@media (min-width: 1024px) {
+  .galeria, .galeria-produtos { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .galeria img, .galeria__item img, .galeria-produtos img, .card-produto img { height: 160px; }
+}
+
+/* ===== Lightbox para galeria ===== */
+.lightbox {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;               /* sempre flex; controlamos via opacity/visibility */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.75); /* overlay escuro padrão */
+  opacity: 0;                  /* escondido por padrão */
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: 96%;
+  max-height: 95%;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

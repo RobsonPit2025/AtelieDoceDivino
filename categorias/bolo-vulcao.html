@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolo Vulcão - Ateliê Doce Divino</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header>
+    <h1>Bolo Vulcão</h1>
+</header>
+
+<nav class="menu-categorias" style="margin-top:10px;">
+    <a class="botao" href="../index.html">← Voltar ao início</a>
+    <a class="botao" href="bolo-chantininho.html">Bolo em Chantininho</a>
+    <a class="botao" href="brigadeiro.html">Brigadeiro</a>
+    <a class="botao" href="doces-finos.html">Doces Finos</a>
+</nav>
+
+<main>
+    <section id="galeria-vulcao" class="galeria-produtos"></section>
+</main>
+
+<footer>
+    <div class="footer-info">
+        <div>
+            <h4>Contato</h4>
+            <p>📞 (71) 99999-9999</p>
+            <p>📍 Salvador - BA</p>
+        </div>
+        <div>
+            <h4>Informações</h4>
+            <p>Aceitamos cartão de crédito</p>
+            <p>Parcelamos suas compras</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/galeria.js"></script>
+<script>
+    const basePath = "../imagens/bolo-vulcao";
+    const fotos = [
+        "vulcao1.jpg",
+        "vulcao2.jpg",
+        "vulcao3.jpg",
+        "vulcao4.jpg",
+        "vulcao5.jpg"
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initGaleria({
+            containerId: "galeria-vulcao",
+            basePath,
+            arquivos: fotos,
+            titulos: [],
+            tituloPadrao: "Bolo Vulcão"
+        });
+    });
+</script>
+
+</body>
+</html>

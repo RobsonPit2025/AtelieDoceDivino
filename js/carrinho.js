@@ -14,7 +14,7 @@ const produtos = [
         preco: 2.50,
         imagem: "imagens/brigadeiro.jpg",
         descricao: "Brigadeiro premium com chocolate 70%",
-        categoria: "bolos"
+        categoria: "brigadeiro"
     }
 ];
 
@@ -23,6 +23,7 @@ let carrinho = [];
 // Renderiza os produtos na página
 function renderizarProdutos(categoriaSelecionada = 'todos') {
     const container = document.getElementById('produtos');
+    if (!container) return; // página não possui a grade de produtos
     const produtosFiltrados = categoriaSelecionada === 'todos'
         ? produtos
         : produtos.filter(produto => produto.categoria === categoriaSelecionada);
@@ -56,6 +57,7 @@ function adicionarAoCarrinho(e) {
 function atualizarCarrinho() {
     const itensCarrinho = document.getElementById('itens-carrinho');
     const totalElement = document.getElementById('total');
+    if (!itensCarrinho || !totalElement) return; // página sem carrinho
     
     itensCarrinho.innerHTML = carrinho.map(item => `
         <div class="item-carrinho">
@@ -69,8 +71,10 @@ function atualizarCarrinho() {
 
     // Atualiza link do WhatsApp
     const whatsappBtn = document.getElementById('finalizar-pedido');
-    const mensagem = `Olá! Quero encomendar:\n${carrinho.map(item => `- ${item.nome} (R$ ${item.preco.toFixed(2)})`).join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`;
-    whatsappBtn.href = `https://wa.me/5571993070776?text=${encodeURIComponent(mensagem)}`;
+    if (whatsappBtn) {
+      const mensagem = `Olá! Quero encomendar:\n${carrinho.map(item => `- ${item.nome} (R$ ${item.preco.toFixed(2)})`).join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`;
+      whatsappBtn.href = `https://wa.me/5571993070776?text=${encodeURIComponent(mensagem)}`;
+    }
 }
 
 function filtrarCategoria(categoria) {
@@ -83,21 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Personaliza com o nome da cliente
     const nomeCliente = "Michele"; // Substitua pelo nome real
-    document.getElementById('nome-cliente').textContent = nomeCliente;
-});
-
-// Slider automático da página principal
-document.addEventListener("DOMContentLoaded", () => {
-    const slides = document.querySelector(".slides");
-    if (slides) {
-        let pos = 0;
-        setInterval(() => {
-            pos -= 1;
-            slides.style.transform = `translateX(${pos}px)`;
-            // Reseta quando chega no fim (ajuste conforme largura total do conteúdo)
-            if (Math.abs(pos) > slides.scrollWidth / 2) {
-                pos = 0;
-            }
-        }, 30); // Velocidade de rolagem (menor = mais rápido)
-    }
+    const elNome = document.getElementById('nome-cliente');
+    if (elNome) elNome.textContent = nomeCliente;
 });
